@@ -1,31 +1,50 @@
-<div id="app">
-    <h1>
-        My Platzi Courses
-    </h1>
-    <p>
-        <input type="text" placeholder="Course title">
-    </p>
-    <p>
-        <input type="number" placeholder="Hours">
-    </p>
-    <p>
-        <button>Save</button>
-    </p>
-
-    </fieldset>
-
-    <div>
-        <h3> Course List </h3>
-        <p class="red">You have not taken courses yet.</p>
-        <div>
-            <ol>
-                <!-- Course list -->
-            </ol>
-        </hr>
-        <p>
-            I have been learning on Platzi for <strong>{{ totalTime }}</strong>.
-            <b>#NeverStopLearning</b>
-        </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platzi Tracker</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <img class="imgLogoHeader" src="./assets/logo-platzi.png" alt="Logo Platzi">
+            <h1>My Platzi Courses</h1>
+        </div>
+        <div class="contentBody">
+            <p>
+                <input type="text" placeholder="Course title" v-model="title" />
+            </p>
+            <p>
+                <input type="number" placeholder="Hours" v-model="time" />
+            </p>
+            <p>
+                <button v-on:click="addCourse">Save</button>
+            </p>
+        
+            </fieldset>
+        
+            <div>
+                <h3> Course List </h3>
+                <p class="red" v-show="courses.lenght === 0">You have not taken courses yet.</p>
+                <div>
+                    <ul v-show="courses.length > 0">
+                        <li v-for="course in courses">
+                            {{ course.title }} - {{ course.time}}
+                        </li>
+                    </ul>
+                </hr>
+                <p>
+                    I have been learning on Platzi for <strong>{{ totalTime }}</strong> hours.
+                    <b>#NeverStopLearning</b>
+                </p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="app.js"> </script>
+</body>
+</html>
+
